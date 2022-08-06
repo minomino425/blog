@@ -18,7 +18,7 @@
   --small-heading3: calc(var(--small-heading2) * 0.86);
 
   /* スペース(余白・間隔) */
-  --space-xs: clamp(1.25rem, 1rem+0.98vw, 1.875rem);
+  --space-xs: clamp(1.25rem, 1rem + 0.98vw, 1.875rem);
   --space-sm: calc(var(--space-xs) * 1.5);
   --space-md: calc(var(--space-xs) * 2);
   --space-lg: calc(var(--space-xs) * 3);
