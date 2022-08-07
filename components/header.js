@@ -5,10 +5,12 @@ import Container from './container'
 
 export default function Header() {
   return (
-    <header className={styles.flexContainer}>
+    <header>
       <Container large>
-        <Logo boxOn />
-        <Nav />
+        <div className={styles.flexContainer}>
+          <Logo boxOn />
+          <Nav />
+        </div>
       </Container>
     </header>
   )

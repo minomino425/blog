@@ -7,12 +7,24 @@ import {
   TwoColumnMain,
   TwoColumnSidebar,
 } from 'components/two-column'
+import Image from 'next/image'
+import eyecatch from 'images/about.jpg'
 
 export default function About() {
   return (
     <>
       <Container>
         <Hero title="About" subtitle="About developement activities" />
+
+        <figure>
+          <Image 
+            src={eyecatch}
+            alt=""
+            layout="responsive"
+            sizes="{min-widyh: 1152px} 1152px, 100vw"
+            priority
+            placeholder='blur'/>
+        </figure>
         <TwoColumn>
           <TwoColumnMain>
             <PostBody>
@@ -32,7 +44,7 @@ export default function About() {
               </p>
             </PostBody>
           </TwoColumnMain>
-          
+
           <TwoColumnSidebar>
             <Contact />
           </TwoColumnSidebar>
