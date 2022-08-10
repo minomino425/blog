@@ -1,5 +1,14 @@
 import Container from 'components/container'
 import { getPostBySlug } from 'lib/api'
+import PostHeader from 'components/post-header'
+import Image from 'next/image'
+import {
+  TwoColumn,
+  TwoColumnMain,
+  TwoColumnSidebar,
+} from 'components/two-column'
+import PostBody from 'components/post-body'
+import ConvertBody from 'components/convert-body'
 
 export default function Schedule({
   title,
@@ -10,7 +19,27 @@ export default function Schedule({
 }) {
   return (
     <Container>
-      <h1>{title}</h1>
+      <PostHeader title={title} subtitle="Blog Article" publish={publish} />
+      <figure>
+        <Image
+          src={eyecatch.url}
+          alt=""
+          layout="responsive"
+          width={eyecatch.width}
+          height={eyecatch.height}
+          sizes="{min-width:1152px} 1152px,100vw"
+          priority
+        />
+      </figure>
+
+      <TwoColumn>
+        <TwoColumnMain>
+          <PostBody>
+            <ConvertBody contentHTML={content} />
+          </PostBody>
+        </TwoColumnMain>
+        <TwoColumnSidebar></TwoColumnSidebar>
+      </TwoColumn>
     </Container>
   )
 }
