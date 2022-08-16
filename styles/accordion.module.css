@@ -21,14 +21,37 @@
   gap: 1em;
 }
 
-.text{
-    overflow: hidden;
-    height: 0px;
-    transition: height 0.5s;
+.text {
+  overflow: hidden;
+  height: 0px;
+  transition: height 0.5s;
+}
+.open .text {
+  animation: openAnim 0.5s forwards;
+}
+.close .text {
+  animation: closeAnim 0.5s forwards;
 }
 
-.open .text{
+@keyframes openAnim {
+  0% {
+    height: 0px;
+  }
+  99% {
+    height: var(--text-height);
+  }
+  100% {
     height: auto;
+  }
+}
+
+@keyframes closeAnim {
+  0% {
+    height: var(--text-height);
+  }
+  100% {
+    height: 0;
+  }
 }
 
 .icon {
