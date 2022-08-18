@@ -5,14 +5,24 @@ import Posts from 'components/post'
 import { eyecatchLocal } from 'lib/constants'
 import { getPlaiceholder } from 'plaiceholder'
 import Meta from 'components/meta'
+import { motion } from 'framer-motion'
 
 export default function Category({ name, posts }) {
   return (
-    <Container>
-      <Meta pageTitle={name} pageDesc={`${name}に関する記事`} />
-      <Postheader title={name} subtitle="Blog Category" />
-      <Posts posts={posts} />
-    </Container>
+    <motion.div
+      initial={{ opacity: 0, y: 50 }} // 初期状態
+      animate={{ opacity: 1, y: 0 }} // マウント時
+      exit={{ opacity: 0, y: 50 }} // アンマウント時
+      transition={{
+        duration: 0.5,
+      }}
+    >
+      <Container>
+        <Meta pageTitle={name} pageDesc={`${name}に関する記事`} />
+        <Postheader title={name} subtitle="Blog Category" />
+        <Posts posts={posts} />
+      </Container>
+    </motion.div>
   )
 }
 

@@ -5,15 +5,25 @@ import Posts from 'components/post'
 import { getAllPosts } from 'lib/api'
 import { eyecatchLocal } from 'lib/constants'
 import { getPlaiceholder } from 'plaiceholder'
+import { motion } from 'framer-motion'
 
 export default function Blog({ posts }) {
   return (
     <>
-      <Container>
-        <Meta pageTitle="ブログ" />
-        <Hero title="Blog" subtitle="Recent Posts" />
-        <Posts posts={posts} />
-      </Container>
+      <motion.div
+        initial={{ opacity: 0, y: 50 }} // 初期状態
+        animate={{ opacity: 1, y: 0 }} // マウント時
+        exit={{ opacity: 0, y: 50 }} // アンマウント時
+        transition={{
+          duration: 0.5,
+        }}
+      >
+        <Container>
+          <Meta pageTitle="ブログ" />
+          <Hero title="Blog" subtitle="Recent Posts" />
+          <Posts posts={posts} />
+        </Container>
+      </motion.div>
     </>
   )
 }

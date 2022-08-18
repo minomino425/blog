@@ -16,6 +16,7 @@ import { eyecatchLocal } from 'lib/constants'
 import { getPlaiceholder } from 'plaiceholder'
 import { prevNextPost } from 'lib/prev-next-post'
 import Pagination from 'components/pagination'
+import { motion } from 'framer-motion'
 
 export default function Post({
   title,
@@ -28,58 +29,67 @@ export default function Post({
   nextPost,
 }) {
   return (
-    <Container>
-      <Meta
-        pageTitle={title}
-        pageDesc={description}
-        pageImg={eyecatch.url}
-        pageImgW={eyecatch.width}
-        pageImgH={eyecatch.height}
-      />
-      <article>
-        <PostHeader title={title} subtitle="Blog Article" publish={publish} />
-        <figure>
-          <Image
-            key={eyecatch.url}
-            src={eyecatch.url}
-            alt=""
-            layout="responsive"
-            width={eyecatch.width}
-            height={eyecatch.height}
-            sizes="{min-width:1152px} 1152px,100vw"
-            priority
-            placeholder="blur"
-            blurDataURL={eyecatch.blurDataURL}
-          />
-        </figure>
-
-        <TwoColumn>
-          <TwoColumnMain>
-            <PostBody>
-              <ConvertBody contentHTML={content} />
-            </PostBody>
-          </TwoColumnMain>
-          <TwoColumnSidebar>
-            <PostCategories categories={categories} />
-          </TwoColumnSidebar>
-        </TwoColumn>
-        <div>
-          {prevPost.title}
-          {prevPost.slug}
-        </div>
-        <div>
-          {nextPost.title}
-          {nextPost.slug}
-        </div>
-
-        <Pagination
-          prevText={prevPost.title}
-          prevUrl={`/blog/${prevPost.slug}`}
-          nextText={nextPost.title}
-          nextUrl={`/blog/${nextPost.slug}`}
+    <motion.div
+      initial={{ opacity: 0, y: 10 }} // 初期状態
+      animate={{ opacity: 1, y: 0 }} // マウント時
+      exit={{ opacity: 0, y: 10 }} // アンマウント時
+      transition={{
+        duration: 0.5,
+      }}
+    >
+      <Container>
+        <Meta
+          pageTitle={title}
+          pageDesc={description}
+          pageImg={eyecatch.url}
+          pageImgW={eyecatch.width}
+          pageImgH={eyecatch.height}
         />
-      </article>
-    </Container>
+        <article>
+          <PostHeader title={title} subtitle="Blog Article" publish={publish} />
+          <figure>
+            <Image
+              key={eyecatch.url}
+              src={eyecatch.url}
+              alt=""
+              layout="responsive"
+              width={eyecatch.width}
+              height={eyecatch.height}
+              sizes="{min-width:1152px} 1152px,100vw"
+              priority
+              placeholder="blur"
+              blurDataURL={eyecatch.blurDataURL}
+            />
+          </figure>
+
+          <TwoColumn>
+            <TwoColumnMain>
+              <PostBody>
+                <ConvertBody contentHTML={content} />
+              </PostBody>
+            </TwoColumnMain>
+            <TwoColumnSidebar>
+              <PostCategories categories={categories} />
+            </TwoColumnSidebar>
+          </TwoColumn>
+          <div>
+            {prevPost.title}
+            {prevPost.slug}
+          </div>
+          <div>
+            {nextPost.title}
+            {nextPost.slug}
+          </div>
+
+          <Pagination
+            prevText={prevPost.title}
+            prevUrl={`/blog/${prevPost.slug}`}
+            nextText={nextPost.title}
+            nextUrl={`/blog/${nextPost.slug}`}
+          />
+        </article>
+      </Container>
+    </motion.div>
   )
 }
 
