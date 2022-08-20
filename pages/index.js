@@ -12,19 +12,19 @@ import { gsap } from 'gsap'
 import styles from 'styles/home.module.css'
 
 export default function Home({ posts }) {
-  useEffect(() => {
-    if (process.browser) {
-      setAnimation()
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (process.browser) {
+  //     setAnimation()
+  //   }
+  // }, [])
 
   const setAnimation = () => {
     const tl = gsap.timeline()
-    tl.to('.home_overlay-path__UIap_', {
-      duration: 0.3,
-      ease: 'power2',
-      attr: { d: 'M 0 100 V 100 Q 50 100 100 100 V 100 z' },
-    })
+    // tl.to('.home_overlay-path__UIap_', {
+    //   duration: 0.3,
+    //   ease: 'power2',
+    //   attr: { d: 'M 0 100 V 100 Q 50 100 100 100 V 100 z' },
+    // })
     tl.to(
       '.home_overlay-path__UIap_',
       {
@@ -38,6 +38,16 @@ export default function Home({ posts }) {
       duration: 0.3,
       ease: 'power2',
       attr: { d: 'M 0 100 V 0 Q 50 0 100 0 V 100 z' },
+      // onComplete: () => {
+      //   useEffect(() => {
+      //     tl.current.to(test, 2, { opacity: 0, onComplete: update })
+      //   }, [count])
+      // },
+    })
+    tl.to('.home_overlay__p6V_L', {
+      duration: 0.3,
+      ease: 'power2',
+      y: '-100%',
     })
   }
 
@@ -66,7 +76,11 @@ export default function Home({ posts }) {
       </svg>
       <Container>
         <Meta />
-        <Hero title="Minoblog" subtitle="みのみのがアウトプットします" imageOn />
+        <Hero
+          title="Minoblog"
+          subtitle="みのみのがアウトプットします"
+          imageOn
+        />
         <Posts posts={posts} />
         <Pagination nextUrl="/blog" nextText="MorePost" />
       </Container>
